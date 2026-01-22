@@ -1,10 +1,12 @@
 import sequelize from "../config/db.js";
 import User from "./User.js";
+import Customer from "./Customer.js";
 import MenuItem from "./MenuItem.js";
 import GalleryImage from "./GalleryImage.js";
 import ContactInquiry from "./ContactInquiry.js";
 import Order from "./Order.js";
 import OrderItem from "./OrderItem.js";
+import Event from "./Event.js";
 
 // Define associations
 Order.hasMany(OrderItem, { foreignKey: "order_id", as: "items" });
@@ -12,6 +14,9 @@ OrderItem.belongsTo(Order, { foreignKey: "order_id" });
 
 OrderItem.belongsTo(MenuItem, { foreignKey: "menu_item_id", as: "menu_item" });
 MenuItem.hasMany(OrderItem, { foreignKey: "menu_item_id" });
+
+Order.belongsTo(Customer, { foreignKey: "customer_id", as: "customer" });
+Customer.hasMany(Order, { foreignKey: "customer_id" });
 
 import bcrypt from "bcryptjs";
 
@@ -41,7 +46,7 @@ const seedInitialData = async () => {
       await User.create({
         username: "admin",
         password_hash: hashedPassword,
-      });ln
+      });
       console.log("Admin user created: username=admin, password=admin123");
     }
 
@@ -117,6 +122,36 @@ const seedInitialData = async () => {
       await GalleryImage.bulkCreate(galleryImages);
       console.log("Sample gallery images created");
     }
+
+    // Seed events
+    const eventCount = await Event.count();
+    if (eventCount === 0) {
+      const events = [
+        {
+          name: "Jazz Night",
+          description: "Live jazz performances with our special cocktails. Immerse yourself in smooth melodies and great vibes.",
+          date: "2023-12-15",
+          time: "20:00:00",
+          image_url: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        },
+        {
+          name: "Open Mic Night",
+          description: "Showcase your talent or enjoy performances by local artists. A night of creativity and connection.",
+          date: "2023-12-20",
+          time: "19:00:00",
+          image_url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        },
+        {
+          name: "Wine & Cheese Evening",
+          description: "Pair exquisite wines with artisanal cheeses. A sophisticated evening for wine enthusiasts.",
+          date: "2023-12-25",
+          time: "18:00:00",
+          image_url: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        },
+      ];
+      await Event.bulkCreate(events);
+      console.log("Sample events created");
+    }
   } catch (error) {
     console.error("Error seeding initial data:", error);
   }
@@ -130,5 +165,6 @@ export {
   ContactInquiry,
   Order,
   OrderItem,
+  Event,
   syncDatabase,
 };

@@ -9,6 +9,14 @@ const Order = db.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    customer_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "customers",
+        key: "id",
+      },
+    },
     customer_name: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -14,7 +14,7 @@ const getGallery = async (req, res) => {
     return RESPONSE.success(res, null, images);
   } catch (error) {
     console.error("Error fetching gallery images:", error);
-    return RESPONSE.error(res, 2999, 500, error);
+    return RESPONSE.error(res, 9999, 500, error);
   }
 };
 
@@ -35,7 +35,7 @@ const addGalleryImage = async (req, res) => {
     return RESPONSE.success(res, null, newImage, 201);
   } catch (error) {
     console.error("Error adding gallery image:", error);
-    return RESPONSE.error(res, 2999, 500, error);
+    return RESPONSE.error(res, 9999, 500, error);
   }
 };
 
@@ -61,7 +61,7 @@ const updateGalleryImageController = async (req, res) => {
     return RESPONSE.success(res, null, updatedImage);
   } catch (error) {
     console.error("Error updating gallery image:", error);
-    return RESPONSE.error(res, 2999, 500, error);
+    return RESPONSE.error(res, 9999, 500, error);
   }
 };
 
@@ -78,7 +78,7 @@ const deleteGalleryImageController = async (req, res) => {
     return RESPONSE.success(res, 1004);
   } catch (error) {
     console.error("Error deleting gallery image:", error);
-    return RESPONSE.error(res, 2999, 500, error);
+    return RESPONSE.error(res, 9999, 500, error);
   }
 };
 

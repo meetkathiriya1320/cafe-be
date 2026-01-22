@@ -18,7 +18,7 @@ const MESSAGES = {
   2010: "Invalid token",
 
   // Server Errors
-  2999: "Internal server error",
+  9999: "Internal server error",
 };
 
 const get_message = (message_code) => {

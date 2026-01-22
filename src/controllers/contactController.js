@@ -14,7 +14,7 @@ const submitContact = async (req, res) => {
 
         return RESPONSE.success(res, 1002, null, 201);
     } catch (err) {
-        return RESPONSE.error(res, 2999, 500, err);
+        return RESPONSE.error(res, 9999, 500, err);
     }
 };
 

@@ -10,7 +10,7 @@ const getMenu = async (req, res) => {
     return RESPONSE.success(res, null, menuItems);
   } catch (err) {
     console.error(err);
-    return RESPONSE.error(res, 2999, 500, err);
+    return RESPONSE.error(res, 9999, 500, err);
   }
 };
 
@@ -27,7 +27,7 @@ const addMenuItem = async (req, res) => {
     return RESPONSE.success(res, null, newItem, 201);
   } catch (err) {
     console.error(err);
-    return RESPONSE.error(res, 2999, 500, err);
+    return RESPONSE.error(res, 9999, 500, err);
   }
 };
 
@@ -48,7 +48,7 @@ const updateMenuItemController = async (req, res) => {
     return RESPONSE.success(res, null, updatedItem);
   } catch (err) {
     console.error(err);
-    return RESPONSE.error(res, 2999, 500, err);
+    return RESPONSE.error(res, 9999, 500, err);
   }
 };
 
@@ -62,7 +62,7 @@ const deleteMenuItemController = async (req, res) => {
     return RESPONSE.success(res, 1003);
   } catch (err) {
     console.error(err);
-    return RESPONSE.error(res, 2999, 500, err);
+    return RESPONSE.error(res, 9999, 500, err);
   }
 };
 
